@@ -1,0 +1,15 @@
+.env
+*.log
+*.sql
+*.tar.gz
+backend/.env
+backend/node_modules/
+backend/uploads/
+backend/.test-uploads/
+frontend/.env
+frontend/node_modules/
+frontend/dist/
+qa/screenshots/
+!backend/migrations/*.sql
+.DS_Store
+.npm/

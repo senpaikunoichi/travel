@@ -1,0 +1,49 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "API de mantenimiento de flota Travel Trans",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "migrate": "node scripts/migrate.js",
+    "create-admin": "node scripts/create-admin.js",
+    "check": "node scripts/check.js",
+    "test": "node --test",
+    "test:integration": "node --test test/fresh-install.test.js test/integration.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@capacitor/app": "8.1.2",
+    "@capacitor/cli": "8.6.2",
+    "@capacitor/core": "8.6.2",
+    "@capacitor/haptics": "8.0.2",
+    "@capacitor/keyboard": "8.0.6",
+    "@capacitor/status-bar": "8.0.4",
+    "@google/generative-ai": "^0.24.1",
+    "body-parser": "^2.3.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "exceljs": "^4.4.0",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "ffmpeg-static": "^5.3.0",
+    "helmet": "^8.3.0",
+    "multer": "^2.3.0",
+    "mysql2": "^3.24.3",
+    "pdfkit": "^0.17.2",
+    "pg": "^8.13.1",
+    "sharp": "^0.35.4"
+  },
+  "overrides": {
+    "exceljs": {
+      "uuid": "^11.1.1"
+    }
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

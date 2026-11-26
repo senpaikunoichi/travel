@@ -1,0 +1,35 @@
+[Unit]
+Description=API de mantenimiento mecanico
+After=network-online.target mysql.service
+# Wants (no Requires): si MySQL se reinicia (por ejemplo, en la actualización automática diaria), la app sigue
+# arriba y se reconecta sola. Con Requires el sistema la apagaba junto con MySQL y no la volvía a encender.
+Wants=network-online.target mysql.service
+
+[Service]
+Type=simple
+User=mantenimiento
+Group=mantenimiento
+WorkingDirectory=/var/www/mantenimiento/backend
+ExecStart=/usr/bin/node server.js
+Restart=always
+RestartSec=5
+TimeoutStopSec=15
+UMask=0027
+
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+CapabilityBoundingSet=
+AmbientCapabilities=
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+ReadWritePaths=/var/www/mantenimiento/backend/uploads
+
+[Install]
+WantedBy=multi-user.target

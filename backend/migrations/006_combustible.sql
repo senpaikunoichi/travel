@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS combustible_registros (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  patente VARCHAR(10) NOT NULL,
+  fecha DATE NOT NULL,
+  ruta VARCHAR(150) NOT NULL,
+  nivel TINYINT UNSIGNED NOT NULL,
+  litros DECIMAL(8,2) NULL,
+  odometro INT NULL,
+  nota VARCHAR(1000) NOT NULL,
+  ruta_archivo VARCHAR(500) NOT NULL,
+  created_by INT NULL,
+  conductor VARCHAR(120) NULL,
+  problema BOOLEAN NULL,
+  tts_ejecucion INT NULL UNIQUE,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_combustible_patente_fecha (patente, fecha),
+  INDEX idx_combustible_fecha (fecha),
+  CONSTRAINT fk_combustible_camion FOREIGN KEY (patente) REFERENCES camiones(patente),
+  CONSTRAINT fk_combustible_usuario FOREIGN KEY (created_by) REFERENCES usuarios(id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

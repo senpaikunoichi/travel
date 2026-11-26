@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS checklists (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_tarea INT NULL,
+  patente VARCHAR(10) NOT NULL,
+  fecha DATE NOT NULL,
+  id_usuario INT NULL,
+  km INT NULL,
+  items JSON NOT NULL,
+  observaciones VARCHAR(2000) NULL,
+  fallas INT NOT NULL DEFAULT 0,
+  conductor VARCHAR(120) NULL,
+  tts_ejecucion INT NULL UNIQUE,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_checklists_tarea (id_tarea),
+  INDEX idx_checklists_fecha_patente (fecha, patente),
+  CONSTRAINT fk_checklists_tarea FOREIGN KEY (id_tarea) REFERENCES tareas(id) ON DELETE CASCADE,
+  CONSTRAINT fk_checklists_usuario FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE SET NULL,
+  CONSTRAINT fk_checklists_camion FOREIGN KEY (patente) REFERENCES camiones(patente)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
